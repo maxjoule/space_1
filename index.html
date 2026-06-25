@@ -1614,7 +1614,8 @@ if(level === 4 && boss.defeated && level4ExitOpen && gameState === 'playing') {
 
                     bossMissiles.push({
                         x: laserEnemy.x - 16,
-                        y: 145,
+                        // Fire slightly higher so it threatens the player on the floating platform.
+                        y: 126,
                         w: 14,
                         h: 5,
                         vx: -0.83,
@@ -1624,8 +1625,8 @@ if(level === 4 && boss.defeated && level4ExitOpen && gameState === 'playing') {
                     document.getElementById("msg").innerText = "Boss fires a slow middle-lane missile! Use the platform or jump timing!";
                 }
 
-                // Below 50% HP, keep spawning ground enemies until the boss is defeated.
-                // They chase the player and bounce at the boss screen edges. They remain until destroyed.
+                // Below 50% HP, keep spawning ground minions until the boss is defeated.
+                // Max 2 active minions. They patrol left and right across the boss arena until destroyed.
                 if(laserEnemy.hp <= laserEnemy.maxHp / 2) {
                     if(!laserEnemy.summoned) {
                         laserEnemy.summoned = true;
@@ -1636,9 +1637,9 @@ if(level === 4 && boss.defeated && level4ExitOpen && gameState === 'playing') {
                     laserEnemy.spawnTimer = (laserEnemy.spawnTimer || 0) - 1;
                     const currentMinions = enemies.filter(e => e.bossMinion).length;
 
-                    if(laserEnemy.spawnTimer <= 0 && currentMinions < 5) {
-                        const spawnFromLeft = seededRandom(levelTimer + laserEnemy.hp * 13) > 0.5;
-                        const spawnX = spawnFromLeft ? arenaLeft + 20 : arenaRight - 40;
+                    if(laserEnemy.spawnTimer <= 0 && currentMinions < 2) {
+                        // Minions spawn near the boss/right side, then patrol left/right.
+                        const spawnX = arenaRight - 40;
 
                         enemies.push({
                             x: spawnX,
@@ -1648,7 +1649,7 @@ if(level === 4 && boss.defeated && level4ExitOpen && gameState === 'playing') {
                             speed: 0.32,
                             range: 0,
                             startX: spawnX,
-                            dir: spawnFromLeft ? 1 : -1,
+                            dir: -1,
                             patrol: true,
                             bossMinion: true,
                             arenaLeft: arenaLeft,
@@ -1890,8 +1891,8 @@ bm.y += (28 - bm.y) * 0.04;
         if(level !== 3) {
             enemies.forEach(e => {
                 if(e.bossMinion) {
-                    // Level 5 boss minions chase the player, then bounce at screen edges.
-                    e.dir = player.x < e.x ? -1 : 1;
+                    // Level 5 boss minions do not chase the player.
+                    // They patrol from the right side to the left edge, then back to the right edge.
                     e.x += e.speed * e.dir;
 
                     if(e.x <= e.arenaLeft) {
