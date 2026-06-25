@@ -130,10 +130,244 @@
             }
         }
 
+    
+        #startMenu,
+        #leaderboardMenu,
+        #creditsMenu {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(0, 20, 60, 0.98), rgba(0, 0, 0, 0.98));
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .menu-card {
+            width: min(90vw, 520px);
+            border: 4px solid #FFD700;
+            background: rgba(0, 0, 0, 0.82);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.35);
+            border-radius: 14px;
+            padding: 28px 22px;
+            text-align: center;
+        }
+
+        .menu-card h1 {
+            color: #FFD700;
+            font-size: 42px;
+            margin: 0 0 8px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+        }
+
+        .menu-card h2 {
+            color: #FFD700;
+            margin-top: 0;
+            font-size: 30px;
+        }
+
+        .menu-subtitle {
+            color: #87CEFA;
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        .menu-btn {
+            display: block;
+            width: 82%;
+            margin: 12px auto;
+            padding: 13px 14px;
+            border: 3px solid #FFD700;
+            background: #0b3d91;
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.15s;
+        }
+
+        .menu-btn:hover,
+        .menu-btn:active {
+            background: #1565c0;
+            transform: scale(1.04);
+        }
+
+        .menu-small-text {
+            color: #ccc;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 18px;
+        }
+
+        #leaderboardList {
+            text-align: left;
+            width: 82%;
+            margin: 12px auto;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 215, 0, 0.35);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .hiddenMenu {
+            display: none !important;
+        }
+
+    
+        #levelResultMenu {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(0, 25, 70, 0.98), rgba(0, 0, 0, 0.98));
+            z-index: 520;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        #levelResultText {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #fff;
+            margin: 18px auto;
+        }
+
+        .rank-highlight {
+            color: #FFD700;
+            font-size: 34px;
+            font-weight: bold;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+        }
+
+    
+        #levelSelectMenu {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(0, 20, 60, 0.98), rgba(0, 0, 0, 0.98));
+            z-index: 510;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .level-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 82%;
+            margin: 18px auto;
+        }
+
+        .level-btn {
+            padding: 16px 8px;
+            border: 3px solid #FFD700;
+            background: #1f6f3f;
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .level-btn:hover,
+        .level-btn:active {
+            background: #2ecc71;
+            transform: scale(1.04);
+        }
+
+        .practice-label {
+            color: #FFCC66;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+
     </style>
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
+    <div id="startMenu">
+        <div class="menu-card">
+            <h1>SPACE ACADEMY</h1>
+            <div class="menu-subtitle">Alien Adventure</div>
+
+            <button class="menu-btn" id="startGameBtn">▶ START GAME</button>
+            <button class="menu-btn" id="levelSelectBtn">🌍 LEVEL SELECT</button>
+            <button class="menu-btn" id="leaderboardBtn">🏆 LEADERBOARD</button>
+            <button class="menu-btn" id="creditsBtn">★ CREDITS</button>
+
+            <div class="menu-small-text">
+                Desktop: A/D move, W jump, Space shoot<br>
+                Android: use the on-screen touch buttons
+            </div>
+        </div>
+    </div>
+
+    <div id="leaderboardMenu" class="hiddenMenu">
+        <div class="menu-card">
+            <h2>🏆 LEADERBOARD</h2>
+            <div class="menu-small-text">Leaderboard keeps all scores on this device/browser.</div>
+            <div id="leaderboardList">No scores yet.</div>
+            <button class="menu-btn" id="backFromLeaderboardBtn">BACK</button>
+        </div>
+    </div>
+
+    <div id="creditsMenu" class="hiddenMenu">
+        <div class="menu-card">
+            <h2>★ CREDITS</h2>
+            <div class="menu-small-text" style="font-size:16px;">
+                <b>Game:</b> Space Academy: Alien Adventure<br>
+                <b>Theme:</b> Space platformer + quiz learning<br>
+                <b>Graphics:</b> Existing pixel/canvas style<br>
+                <b>Built with:</b> HTML5 Canvas, CSS, JavaScript<br><br>
+                Thank you for playing!
+            </div>
+            <button class="menu-btn" id="backFromCreditsBtn">BACK</button>
+        </div>
+    </div>
+
+
+    <div id="levelResultMenu" class="hiddenMenu">
+        <div class="menu-card">
+            <h2>LEVEL COMPLETE!</h2>
+            <div id="levelResultText">
+                Calculating result...
+            </div>
+            <button class="menu-btn" id="nextLevelBtn">NEXT LEVEL</button>
+            <button class="menu-btn" id="resultLeaderboardBtn">VIEW LEADERBOARD</button>
+        </div>
+    </div>
+
+
+    <div id="levelSelectMenu" class="hiddenMenu">
+        <div class="menu-card">
+            <h2>🌍 LEVEL SELECT</h2>
+            <div class="practice-label">
+                Practice Mode: scores from selected levels will not be saved to the leaderboard.
+            </div>
+            <div class="level-grid">
+                <button class="level-btn" data-level="1">Level 1</button>
+                <button class="level-btn" data-level="2">Level 2</button>
+                <button class="level-btn" data-level="3">Level 3</button>
+                <button class="level-btn" data-level="4">Level 4</button>
+                <button class="level-btn" data-level="5">Level 5</button>
+                <button class="level-btn" data-level="6">Level 6</button>
+            </div>
+            <button class="menu-btn" id="backFromLevelSelectBtn">BACK</button>
+        </div>
+    </div>
+
     <div class="info-panel">
     <span id="levelDisplay">LEVEL: 1</span> |
     <span id="timeDisplay">TIME: 0</span> |
@@ -159,7 +393,7 @@
         </div>
     </div>
 
-    <p style="color:#aaa; font-size:12px;">W(跳) | A D(左右) | 空格(射击) | 第6关：双Boss同时登场！</p>
+    <p style="color:#aaa; font-size:12px;">W(跳) | A D(左右) | 空格(射击) | 第6关：最终Boss战！</p>
 
 <script>
 /*
@@ -216,8 +450,8 @@ const storyQuizzes = [
         a: "c"
     }
 ];
-    let gameState = 'playing'; let level = 1; let keys = {}; let cameraX = 0; let WORLD_WIDTH = 2000;
-    let player, platforms, enemies, bullets, goal, boss, laserEnemy, levelTimer = 0;
+    let gameState = 'menu'; let level = 1; let practiceMode = false; let keys = {}; let cameraX = 0; let WORLD_WIDTH = 2000;
+    let player, platforms, enemies, enemyProjectiles, bullets, bombs, bombers, bossShots, bossBombs, bossMissiles, goal, boss, laserEnemy, levelTimer = 0;
 
 // Gameplay tuning - adjust these values anytime
 const PLAYER_WALK_SPEED = 1.15;
@@ -232,9 +466,178 @@ const BULLET_SPEED      = 6;
 const CAMERA_SMOOTHING  = 0.08;
 const BOSS_FAST_SPEED   = 1.1;
 const BOSS_SLOW_SPEED   = 0.7;
+const BOMBER_SPEED     = 0.65;
+const BOMB_DROP_DELAY  = 140;
+const BOMB_FALL_SPEED  = 1.4;
+const BOSS_VERTICAL_SHOT_SPEED = 2.4;
+const BOSS_BOMB_FALL_SPEED = 1.2;
+const BOSS_ATTACK_DELAY        = 90;
+const BOSS_MISSILE_SPEED = 1.05;
+const LEVEL4_PHASE_TIME = 300; // 10 seconds at around 60fps
+const LEVEL4_BOSS_HP = 60;
+const LEVEL4_BOSS_BOMB_DROP_DELAY = 180;
 let levelStartX = 50;
 let levelStartY = 150;
 let winTimer = 0;
+const LEVEL6_BOSS_BOMB_SPEED = 1.1;
+const LEVEL6_BOSS_MISSILE_SPEED = 1.0;
+const LEVEL6_BOSS_HP_PER_FORM = 28;
+const LEVEL6_BOSS_FORM_MAX = 3;
+const LEVEL2_BOMBER_HOVER_SPEED = 0.008;
+const LEVEL2_BOMBER_BOMB_SPEED = 0.75;
+const LEVEL2_BOMBER_BOMB_DELAY = 300;
+const LEVEL2_BOMBER_SCREEN_Y = 20;
+const LEVEL2_BOMBER_SPEED = 0.55;
+const LEVEL2_BOMBER_SCREEN_MARGIN = 55;
+const LEVEL3_PATROL_SPEED = 0.35;
+const LEVEL3_BOMBER_BOMB_SPEED = 0.95;
+const LEVEL3_BOMBER_BOMB_DELAY = 300;
+const LEVEL3_BOMBER_SPEED = 0.32;
+const ENEMY_PROJECTILE_SPEED = 0.55;
+const PLATFORM_ENEMY_PROJECTILE_SPEED = 0.45;
+let level4ExitOpen = false;
+let level4Transition = false;
+let level4BossScreenWidth = 400;
+let level5ExitOpen = false;
+let level5Transition = false;
+let level5BossFightStarted = false;
+let level5BossScreenWidth = 400;
+const LEVEL4_BOSS_MOVE_LERP = 0.018;
+
+function seededRandom(seed) {
+    let x = Math.sin(seed) * 10000;
+    return x - Math.floor(x);
+}
+
+
+
+
+function makePlatformEnemiesShootOnce() {
+    // All platform enemies can fire one very slow projectile.
+    // Each enemy fires only once when both player and enemy are visible and close enough.
+    if(!enemies) return;
+
+    enemies.forEach(e => {
+        e.shooter = true;
+        e.hasFired = false;
+        e.sightRange = e.sightRange || 280;
+        e.projectileSpeed = PLATFORM_ENEMY_PROJECTILE_SPEED;
+    });
+}
+
+function setupLevel2ScreenBomber() {
+    if(level !== 2) return;
+
+    // Level 2 UFO is screen-relative.
+    // It always stays visible, flies high, and cannot be reached by the player's jump.
+    bombers = [{
+        x: cameraX + canvas.width / 2,
+        y: LEVEL2_BOMBER_SCREEN_Y,
+        w: 34,
+        h: 22,
+        dir: 1,
+        speed: 0,
+        dropTimer: 150,
+        screenLocked: true,
+        screenMode: true
+    }];
+}
+
+function setupLevel3Entities() {
+    if(level !== 3) return;
+
+    enemies = [];
+    enemyProjectiles = [];
+    bombs = [];
+    bombers = [];
+
+    // One-shot shooter enemies.
+    // They only fire when both the player and shooter are visible in the current screen.
+    [430, 800, 1180, 1560].forEach((x) => {
+        enemies.push({
+            x: x,
+            y: 184,
+            w: 16,
+            h: 16,
+            speed: 0,
+            range: 0,
+            startX: x,
+            dir: -1,
+            shooter: true,
+            patrol: false,
+            hasFired: false,
+            sightRange: 300
+        });
+    });
+
+    // Patrol alien on EVERY platform, including floating step platforms.
+    platforms.forEach((p, index) => {
+        // Skip very small/unsafe platforms
+        if(p.w < 60) return;
+
+        let patrolWidth = Math.max(30, p.w - 36);
+        let startX = p.x + 10;
+
+        // Avoid spawning directly on top of player start and rocket area.
+        if(index === 0) {
+            const groundSections = [
+                { x: 170, range: 150 },
+                { x: 560, range: 170 },
+                { x: 930, range: 170 },
+                { x: 1300, range: 170 },
+                { x: 1660, range: 170 }
+            ];
+
+            groundSections.forEach(s => {
+                enemies.push({
+                    x: s.x,
+                    y: p.y - 16,
+                    w: 16,
+                    h: 16,
+                    speed: LEVEL3_PATROL_SPEED,
+                    range: s.range,
+                    startX: s.x,
+                    dir: 1,
+                    shooter: false,
+                    patrol: true
+                });
+            });
+
+            return;
+        }
+
+        enemies.push({
+            x: startX,
+            y: p.y - 16,
+            w: 16,
+            h: 16,
+            speed: LEVEL3_PATROL_SPEED,
+            range: patrolWidth,
+            startX: startX,
+            dir: 1,
+            shooter: false,
+            patrol: true
+        });
+    });
+
+    // High bomber - slower movement and slower falling bombs.
+    bombers.push({
+        x: 620,
+        y: 28,
+        w: 34,
+        h: 22,
+        startX: 620,
+        range: 320,
+        dir: 1,
+        speed: LEVEL3_BOMBER_SPEED,
+        dropTimer: 120,
+        randomTimer: 120
+    });
+
+    document.getElementById("msg").innerText =
+        "Level 3: Patrol aliens, shooter aliens and slow bomber active!";
+}
+
 function getGroundColor(level) {
     const colors = [
         { top: '#999999', bottom: '#555555' }, // 1 灰
@@ -254,11 +657,11 @@ function getEnemyColor(level) {
     ];
     return colors[(level - 1) % 3];
 }	
-    function initLevel() {
+    function initLevel(startPlaying = true) {
         player = { x: 50, y: 150, w: 14, h: 18, velX: 0, velY: 0, grounded: false, dir: 1, jumps: 0 };
 	levelStartX = 50;
 levelStartY = 150;
-        cameraX = 0; bullets = []; gameState = 'playing'; levelTimer = 0;
+        cameraX = 0; bullets = []; enemyProjectiles = []; bombs = []; bombers = []; bossShots = []; bossBombs = []; bossMissiles = []; gameState = 'playing'; levelTimer = 0;
 winTimer = 0;
         document.getElementById('quiz-overlay').style.display = 'none';
         document.getElementById('levelDisplay').innerText = `LEVEL: ${level}`;
@@ -278,9 +681,360 @@ winTimer = 0;
     h: 50
 };
 
+
+
+        // Level 5 special stage: platform enemies first, then Laser Boss arena + rocket exit screen
+        if(level === 5) {
+            level5ExitOpen = false;
+            level5Transition = false;
+            level5BossFightStarted = false;
+
+            // Long stage layout:
+            // Area 1: platform section with enemies
+            // Area 2: Laser Boss arena
+            // Area 3: rocket exit after boss defeat
+            WORLD_WIDTH = 3200;
+            level5BossScreenWidth = WORLD_WIDTH - canvas.width;
+            const level5BossArenaStart = level5BossScreenWidth - canvas.width;
+
+            platforms = [
+                // Main safe ground, no pits
+                { x: 0, y: 200, w: WORLD_WIDTH, h: 40 },
+
+                // Platform challenge before the boss.
+                // Positions are intentionally irregular so the stage feels less repeated.
+                { x: 300, y: 165, w: 115, h: 12 },
+                { x: 560, y: 148, w: 125, h: 12 },
+                { x: 835, y: 166, w: 110, h: 12 },
+                { x: 1120, y: 145, w: 130, h: 12 },
+                { x: 1395, y: 162, w: 115, h: 12 },
+                { x: 1630, y: 150, w: 125, h: 12 },
+                { x: 1845, y: 168, w: 115, h: 12 },
+                { x: 2020, y: 150, w: 120, h: 12 },
+                { x: 2185, y: 164, w: 95, h: 12 },
+                { x: 2325, y: 148, w: 95, h: 12 },
+
+                // Boss arena dodge platform.
+                // Single floating platform used to dodge the slow horizontal missile.
+                { x: level5BossArenaStart + 75,  y: 135, w: 230, h: 12 }
+            ];
+
+            player.x = 40;
+            player.y = 150;
+
+            // Rocket is placed on the final screen.
+            // It is reachable only after the Laser Boss is defeated.
+            goal = {
+                x: WORLD_WIDTH - 80,
+                y: 150,
+                w: 30,
+                h: 50
+            };
+
+            cameraX = 0;
+            enemies = [
+                // Ground patrols before the boss.
+                // Irregular spacing keeps them from cluttering together.
+                { x: 185, y: 184, w: 16, h: 16, speed: 0.30, range: 105, startX: 185, dir: 1, patrol: true },
+                { x: 470, y: 184, w: 16, h: 16, speed: 0.32, range: 120, startX: 470, dir: -1, patrol: true },
+                { x: 735, y: 184, w: 16, h: 16, speed: 0.32, range: 130, startX: 735, dir: 1, patrol: true },
+                { x: 1015, y: 184, w: 16, h: 16, speed: 0.34, range: 125, startX: 1015, dir: -1, patrol: true },
+                { x: 1320, y: 184, w: 16, h: 16, speed: 0.34, range: 140, startX: 1320, dir: 1, patrol: true },
+                { x: 1555, y: 184, w: 16, h: 16, speed: 0.34, range: 120, startX: 1555, dir: -1, patrol: true },
+                { x: 1785, y: 184, w: 16, h: 16, speed: 0.35, range: 105, startX: 1785, dir: 1, patrol: true },
+                { x: 1905, y: 184, w: 16, h: 16, speed: 0.35, range: 90, startX: 1905, dir: -1, patrol: true },
+                { x: 2025, y: 184, w: 16, h: 16, speed: 0.35, range: 95, startX: 2025, dir: 1, patrol: true },
+                { x: 2140, y: 184, w: 16, h: 16, speed: 0.34, range: 70, startX: 2140, dir: -1, patrol: true },
+
+                // Platform enemies before the Laser Boss.
+                { x: 330, y: 149, w: 16, h: 16, speed: 0.24, range: 65, startX: 330, dir: 1, patrol: true },
+                { x: 600, y: 132, w: 16, h: 16, speed: 0.25, range: 75, startX: 600, dir: -1, patrol: true },
+                { x: 865, y: 150, w: 16, h: 16, speed: 0.25, range: 60, startX: 865, dir: 1, patrol: true },
+                { x: 1160, y: 129, w: 16, h: 16, speed: 0.26, range: 80, startX: 1160, dir: -1, patrol: true },
+                { x: 1425, y: 146, w: 16, h: 16, speed: 0.26, range: 70, startX: 1425, dir: 1, patrol: true },
+                { x: 1670, y: 134, w: 16, h: 16, speed: 0.26, range: 75, startX: 1670, dir: -1, patrol: true },
+                { x: 1875, y: 152, w: 16, h: 16, speed: 0.26, range: 65, startX: 1875, dir: 1, patrol: true },
+                { x: 2050, y: 134, w: 16, h: 16, speed: 0.26, range: 70, startX: 2050, dir: -1, patrol: true },
+                { x: 2205, y: 148, w: 16, h: 16, speed: 0.22, range: 45, startX: 2205, dir: 1, patrol: true },
+                { x: 2325, y: 132, w: 16, h: 16, speed: 0.22, range: 45, startX: 2325, dir: -1, patrol: true }
+            ];
+
+            // Automatic Level 5 enemy filler:
+            // Guarantees every pre-boss camera screen has visible enemies.
+            // This prevents long empty screens before the Laser Boss.
+            const level5EnemyEndX = level5BossArenaStart - 80;
+            const level5FillerPositions = [
+                115, 255,
+                410, 535, 670,
+                805, 935, 1065,
+                1195, 1325, 1455,
+                1585, 1715, 1845,
+                1975, 2105, 2235, 2365
+            ];
+
+            level5FillerPositions.forEach((x, idx) => {
+                if(x >= level5EnemyEndX) return;
+
+                const tooClose = enemies.some(e => Math.abs(e.x - x) < 85);
+                if(tooClose) return;
+
+                const onGround = idx % 3 !== 1;
+                const y = onGround ? 184 : 148 + ((idx % 2) * 12);
+                const patrolRange = onGround ? 85 + ((idx % 4) * 15) : 50;
+
+                enemies.push({
+                    x: x,
+                    y: y,
+                    w: 16,
+                    h: 16,
+                    speed: onGround ? 0.30 + ((idx % 3) * 0.02) : 0.23,
+                    range: patrolRange,
+                    startX: x,
+                    dir: idx % 2 === 0 ? 1 : -1,
+                    patrol: true
+                });
+            });
+
+            // Last approach guards just before the boss arena.
+            // These make the final pre-boss screen feel occupied without blocking the boss door.
+            [level5BossArenaStart - 340, level5BossArenaStart - 220, level5BossArenaStart - 120].forEach((x, idx) => {
+                const tooClose = enemies.some(e => Math.abs(e.x - x) < 75);
+                if(!tooClose && x > 120) {
+                    enemies.push({
+                        x: x,
+                        y: 184,
+                        w: 16,
+                        h: 16,
+                        speed: 0.32,
+                        range: 70,
+                        startX: x,
+                        dir: idx % 2 === 0 ? 1 : -1,
+                        patrol: true
+                    });
+                }
+            });
+
+            // Keep the first 400px as a safe warm-up area with no enemies.
+            enemies = enemies.filter(e => e.x >= 400);
+
+            // Hard guarantee: every 400px movement band AFTER the first safe screen has at least 3 enemy sprites.
+            // This uses the existing enemy object format, normal patrol movement, and one-shot projectile rule.
+            // Bands: 400-799, 800-1199, 1200-1599, 1600-1999, and 2000-2399.
+            const level5MinEnemiesPerBand = 3;
+            for(let bandStart = 400; bandStart < level5BossArenaStart; bandStart += 400) {
+                const bandEnd = Math.min(bandStart + 400, level5BossArenaStart);
+                const bandWidth = bandEnd - bandStart;
+
+                let bandEnemies = enemies.filter(e => e.x >= bandStart && e.x < bandEnd).length;
+
+                // Use wider spacing on full 400px screens and tighter spacing on the final shorter approach.
+                const offsets = bandWidth >= 360 ? [85, 205, 325] : [35, 100, 165];
+
+                for(let slot = 0; bandEnemies < level5MinEnemiesPerBand && slot < offsets.length; slot++) {
+                    let x = bandStart + offsets[slot];
+
+                    // Keep enemies before the boss trigger.
+                    if(x > level5BossArenaStart - 35) x = level5BossArenaStart - 35;
+
+                    // If a preferred slot is crowded, nudge it inside the same 400px band.
+                    let attempts = 0;
+                    while(enemies.some(e => Math.abs(e.x - x) < 42) && attempts < 5) {
+                        x += (attempts % 2 === 0 ? 32 : -48);
+                        x = Math.max(bandStart + 25, Math.min(x, bandEnd - 30, level5BossArenaStart - 35));
+                        attempts++;
+                    }
+
+                    const elevated = ((bandStart / 400 + slot) % 3 === 1);
+
+                    enemies.push({
+                        x: x,
+                        y: elevated ? 148 : 184,
+                        w: 16,
+                        h: 16,
+                        speed: elevated ? 0.24 : 0.31,
+                        range: elevated ? 55 : 80,
+                        startX: x,
+                        dir: slot % 2 === 0 ? 1 : -1,
+                        patrol: true
+                    });
+
+                    bandEnemies++;
+                }
+            }
+
+            bombers = [
+                // Pre-boss flying enemies to prevent empty screens before the Laser Boss.
+                // They are spaced apart and only drop bombs when the player is nearby.
+                { x: 520, y: 48, w: 34, h: 22, startX: 520, range: 260, dir: 1, speed: 0.32, dropTimer: 180 },
+                { x: 1040, y: 42, w: 34, h: 22, startX: 1040, range: 280, dir: -1, speed: 0.30, dropTimer: 220 },
+                { x: 1560, y: 50, w: 34, h: 22, startX: 1560, range: 260, dir: 1, speed: 0.31, dropTimer: 200 },
+                { x: 2040, y: 44, w: 34, h: 22, startX: 2040, range: 170, dir: -1, speed: 0.28, dropTimer: 240 },
+                { x: 2320, y: 46, w: 34, h: 22, startX: 2320, range: 120, dir: 1, speed: 0.26, dropTimer: 260 }
+            ];
+            bombs = [];
+            bossBombs = [];
+            bossMissiles = [];
+            bossShots = [];
+
+            document.getElementById("msg").innerText =
+                "Level 5: First 400px is safe. 400-2400 has at least 3 enemies every 400px!";
+        }
+
+
+        // Level 6 special stage: pure final boss fight
+        if(level === 6) {
+            WORLD_WIDTH = canvas.width;
+
+            platforms = [
+                { x: 0, y: 200, w: canvas.width, h: 40 }
+            ];
+
+            player.x = 40;
+            player.y = 150;
+
+            goal = {
+                x: canvas.width - 55,
+                y: 150,
+                w: 30,
+                h: 50
+            };
+
+            cameraX = 0;
+            enemies = [];
+            bombers = [];
+            bombs = [];
+            bossBombs = [];
+            bossMissiles = [];
+            bossShots = [];
+        }
+
+        // Level 3 fixed stage: steps + shooters + patrol enemies + high bomber
+        if(level === 3) {
+            WORLD_WIDTH = 2000;
+
+            platforms = [
+                { x: 0, y: 200, w: WORLD_WIDTH, h: 40 }
+            ];
+
+            // Step platforms above the main ground.
+            const level3Steps = [
+                { x: 280, y: 168, w: 90, h: 12 },
+                { x: 560, y: 150, w: 100, h: 12 },
+                { x: 850, y: 165, w: 90, h: 12 },
+                { x: 1120, y: 145, w: 110, h: 12 },
+                { x: 1420, y: 160, w: 95, h: 12 },
+                { x: 1680, y: 148, w: 100, h: 12 }
+            ];
+
+            level3Steps.forEach(s => platforms.push(s));
+
+            player.x = 50;
+            player.y = 150;
+
+            goal = {
+                x: WORLD_WIDTH - 90,
+                y: 150,
+                w: 30,
+                h: 50
+            };
+
+            enemies = [];
+            enemyProjectiles = [];
+            bombs = [];
+            bombers = [];
+
+            // One-shot shooter enemies
+            [430, 800, 1180, 1560].forEach((x) => {
+                enemies.push({
+                    x: x,
+                    y: 184,
+                    w: 16,
+                    h: 16,
+                    speed: 0,
+                    range: 0,
+                    startX: x,
+                    dir: -1,
+                    shooter: true,
+                    patrol: false,
+                    hasFired: false,
+                    sightRange: 300
+                });
+            });
+
+            // Ground patrol enemies, one per section.
+            [
+                { x: 180, startX: 120, range: 160 },
+                { x: 620, startX: 560, range: 180 },
+                { x: 980, startX: 910, range: 190 },
+                { x: 1350, startX: 1280, range: 180 },
+                { x: 1760, startX: 1700, range: 160 }
+            ].forEach(p => {
+                enemies.push({
+                    x: p.x,
+                    y: 184,
+                    w: 16,
+                    h: 16,
+                    speed: LEVEL3_PATROL_SPEED,
+                    range: p.range,
+                    startX: p.startX,
+                    dir: 1,
+                    shooter: false,
+                    patrol: true
+                });
+            });
+
+            // High bomber - always present in Level 3
+            bombers.push({
+                x: 620,
+                y: 28,
+                w: 34,
+                h: 22,
+                startX: 620,
+                range: 700,
+                dir: 1,
+                speed: LEVEL3_BOMBER_SPEED,
+                dropTimer: 90,
+                randomTimer: 90
+            });
+        }
+
+        // Level 4 special boss arena: boss arena + rocket exit screen
+        if(level === 4) {
+            level4ExitOpen = false;
+            level4Transition = false;
+            level4BossScreenWidth = canvas.width;
+
+            // Two screens:
+            // Screen 1: boss fight
+            // Screen 2: rocket after boss defeat
+            WORLD_WIDTH = canvas.width * 2;
+
+            platforms = [
+                { x: 0, y: 200, w: WORLD_WIDTH, h: 40 }
+            ];
+
+            player.x = 40;
+            player.y = 150;
+
+            goal = {
+                x: WORLD_WIDTH - 80,
+                y: 150,
+                w: 30,
+                h: 50
+            };
+
+            cameraX = 0;
+            enemies = [];
+            bombers = [];
+            bombs = [];
+            bossBombs = [];
+            bossMissiles = [];
+        }
+
+
         // 1-3关怪物：放在玩家必经的平台上
-        enemies = [];
-        if (level <= 3) {
+        if(level !== 5) enemies = [];
+        if (level <= 3 && level !== 3) {
             platforms.forEach((p, i) => {
                 if (i > 0 && i < platforms.length - 1) {
                     enemies.push({ x: p.x + 20, y: p.y - 16, w: 16, h: 16, speed: 0.25 + level*0.08, range: p.w - 40, startX: p.x + 20, dir: 1 });
@@ -288,18 +1042,104 @@ winTimer = 0;
             });
         }
 
+        // Flying bomber enemies
+        // Spawn on all levels EXCEPT Level 4.
+        // Level 4 is reserved for the upgraded boss fight.
+        bombers = [];
+
+        if(level !== 4 && level !== 3 && level !== 5) {
+            bombers.push({
+                x: 360,
+                y: 55,
+                w: 34,
+                h: 22,
+                startX: 360,
+                range: 900,
+                dir: 1,
+                speed: BOMBER_SPEED,
+                dropTimer: 80
+            });
+        }
+
+        // Extra bomber appears from Level 3 onward, except Level 4.
+        if(level >= 3 && level !== 4 && level !== 3 && level !== 5) {
+            bombers.push({
+                x: 1050,
+                y: 48,
+                w: 34,
+                h: 22,
+                startX: 1050,
+                range: 650,
+                dir: -1,
+                speed: BOMBER_SPEED + 0.2,
+                dropTimer: 120
+            });
+        }
+
+
+        // Level 2 bomber must stay inside the visible camera screen.
+        if(level === 2) {
+            bombers = [{
+                x: cameraX + canvas.width - 110,
+                y: 45,
+                w: 34,
+                h: 22,
+                startX: cameraX + canvas.width - 110,
+                range: canvas.width - 120,
+                dir: -1,
+                speed: LEVEL2_BOMBER_SPEED,
+                dropTimer: 90,
+                screenLocked: true
+            }];
+        }
+
         // 第4-6关 Boss 初始化
         boss = {
     active: (level === 4 || level === 6),
-    x: cameraX - 200,   // 👈 从玩家后面出现
-    y: 150,
-    w: 35,
-    h: 35,
-    hp: 50,
-    maxHp: 50,
-    flash: 0
+    x: (level === 4 ? canvas.width + 70 : (level === 6 ? canvas.width - 95 : cameraX - 200)),
+    y: (level === 4 ? 55 : (level === 6 ? 55 : 120)),
+    w: (level === 6 ? 75 : 35),
+    h: (level === 6 ? 75 : 35),
+    hp: (level === 4 ? LEVEL4_BOSS_HP : (level === 6 ? LEVEL6_BOSS_HP_PER_FORM : 50)),
+    maxHp: (level === 4 ? LEVEL4_BOSS_HP : (level === 6 ? LEVEL6_BOSS_HP_PER_FORM : 50)),
+    flash: 0,
+    phase: (level === 4 ? 'enterArena' : (level === 6 ? 'finalHover' : 'enter')),
+    attackTimer: 0,
+    side: 'right',
+    targetX: 0,
+    targetY: 70,
+    defeated: false,
+    form: (level === 6 ? LEVEL6_BOSS_FORM_MAX : 1)
 };
-        laserEnemy = { active: (level === 5 || level === 6), x: WORLD_WIDTH - 500, y: 150, w: 45, h: 45, hp: 50, maxHp: 50, timer: 0, isWarning: false, isFiring: false, flash: 0 };
+        laserEnemy = {
+            active: (level === 5),
+            x: (level === 5 ? level5BossScreenWidth - 90 : WORLD_WIDTH - 500),
+            y: 145,
+            w: 45,
+            h: 45,
+            hp: 60,
+            maxHp: 60,
+            timer: 0,
+            moveTimer: 0,
+            skyTimer: 0,
+            skyCooldown: 60,
+            skyVolleyActive: false,
+            missileTimer: 0,
+            spawnTimer: 0,
+            baseY: 145,
+            targetX: (level === 5 ? level5BossScreenWidth - 90 : WORLD_WIDTH - 500),
+            targetY: 145,
+            phase: 'hover',
+            isWarning: false,
+            isFiring: false,
+            flash: 0,
+            defeated: false,
+            summoned: false
+        };
+
+        setupLevel2ScreenBomber();
+        setupLevel3Entities();
+        makePlatformEnemiesShootOnce();
     }
 
     function playerJump() {
@@ -418,32 +1258,209 @@ document.getElementById("timeDisplay").innerText =
         player.x += player.velX;
         player.y += player.velY;
 
+        // Level 5: start the Laser Boss fight only after reaching the arena.
+        // Before this point, the camera scrolls normally through the platform section.
+        if(level === 5 && !level5BossFightStarted && !level5ExitOpen) {
+            const level5BossArenaStart = level5BossScreenWidth - canvas.width;
+
+            if(player.x + player.w >= level5BossArenaStart + 30) {
+                level5BossFightStarted = true;
+                player.x = Math.max(player.x, level5BossArenaStart + 35);
+                cameraX = level5BossArenaStart;
+                document.getElementById("msg").innerText = "WARNING! Boss ahead - use platforms to dodge missiles and sky shots!";
+            }
+        }
+
+
+        // Level 4 boss arena wall:
+        // During the boss fight, the player cannot leave the first screen.
+        if(level === 4 && !level4ExitOpen) {
+            if(player.x < 0) player.x = 0;
+            if(player.x + player.w > level4BossScreenWidth) {
+                player.x = level4BossScreenWidth - player.w;
+                player.velX = 0;
+            }
+        }
+
+
+        // Level 5 Laser Boss arena wall:
+        // Player cannot leave first screen until Laser Boss is defeated.
+        if(level === 5 && level5BossFightStarted && !level5ExitOpen) {
+            if(player.x < 0) player.x = 0;
+
+            if(player.x + player.w > level5BossScreenWidth) {
+                player.x = level5BossScreenWidth - player.w;
+                player.velX = 0;
+            }
+        }
+
+        // Normal world bounds
+        if(player.x < 0) player.x = 0;
+        if(player.x + player.w > WORLD_WIDTH) {
+            player.x = WORLD_WIDTH - player.w;
+            player.velX = 0;
+        }
+
         // Smooth camera follow
-        let targetCamera = player.x - canvas.width / 2;
-        targetCamera = Math.max(0, Math.min(targetCamera, WORLD_WIDTH - canvas.width));
-        cameraX += (targetCamera - cameraX) * CAMERA_SMOOTHING;
+        if(level === 4 && !level4ExitOpen) {
+            cameraX = 0;
+        } else if(level === 5 && level5BossFightStarted && !level5ExitOpen) {
+            cameraX = level5BossScreenWidth - canvas.width;
+        } else {
+            let targetCamera = player.x - canvas.width / 2;
+            targetCamera = Math.max(0, Math.min(targetCamera, WORLD_WIDTH - canvas.width));
+
+            // Slower cinematic camera when exiting boss arenas
+            let smoothing = ((level === 4 && level4Transition) || (level === 5 && level5Transition)) ? 0.05 : CAMERA_SMOOTHING;
+            cameraX += (targetCamera - cameraX) * smoothing;
+        }
         player.grounded = false;
         platforms.forEach(p => { if(colCheck(player, p) && player.velY > 0 && player.y < p.y + 12) { player.grounded=true; player.jumps=0; player.velY=0; player.y=p.y-player.h; }});
 
-        // Boss 追逐逻辑 (Level 4 & 6)
+        // Boss logic
 if(boss.active) {
 
     if (levelTimer > 60) {
 
-        // 到终点前200像素停止
-        let stopX = WORLD_WIDTH - 250;
+        if(level === 4) {
+            boss.attackTimer++;
 
-        if(boss.x < stopX){
+            // Phase 1: boss slowly enters screen
+            if(boss.phase === 'enterArena') {
+                boss.x += ((canvas.width - 90) - boss.x) * LEVEL4_BOSS_MOVE_LERP;
+                boss.y += (45 - boss.y) * LEVEL4_BOSS_MOVE_LERP;
 
-            if (boss.x < player.x - 200) {
-                boss.x += BOSS_FAST_SPEED;
-            } else {
-                boss.x += BOSS_SLOW_SPEED;
+                if(Math.abs(boss.x - (canvas.width - 90)) < 5) {
+                    boss.phase = 'hoverBomb';
+                    boss.attackTimer = 0;
+                    document.getElementById("msg").innerText = "Boss overhead! Dodge bombs!";
+                }
             }
 
-            // 防止超出停止位置
-            if(boss.x > stopX){
-                boss.x = stopX;
+            // Phase 2: hover slowly above player and drop visible bombs every 3 seconds
+            else if(boss.phase === 'hoverBomb') {
+                boss.targetX = player.x + player.w / 2 - boss.w / 2;
+                boss.targetY = 42;
+
+                boss.x += (boss.targetX - boss.x) * LEVEL4_BOSS_MOVE_LERP;
+                boss.y += (boss.targetY - boss.y) * LEVEL4_BOSS_MOVE_LERP;
+
+                if(boss.attackTimer === 1 || boss.attackTimer % LEVEL4_BOSS_BOMB_DROP_DELAY === 0) {
+                    bossBombs.push({
+                        x: boss.x + boss.w / 2 - 10,
+                        y: boss.y + boss.h + 4,
+                        w: 20,
+                        h: 24,
+                        vy: BOSS_BOMB_FALL_SPEED
+                    });
+                }
+
+                // After 5 seconds, move down to the side and shoot missiles
+                if(boss.attackTimer >= LEVEL4_PHASE_TIME) {
+                    boss.phase = 'moveToSide';
+                    boss.attackTimer = 0;
+                    boss.side = (boss.side === 'right') ? 'left' : 'right';
+                    document.getElementById("msg").innerText = "Boss missile phase! Shoot now!";
+                }
+            }
+
+            // Phase 3: boss slowly comes down and moves to left/right side
+            else if(boss.phase === 'moveToSide') {
+                boss.targetX = (boss.side === 'right') ? canvas.width - 75 : 40;
+                boss.targetY = player.y - 6;
+
+                boss.x += (boss.targetX - boss.x) * LEVEL4_BOSS_MOVE_LERP;
+                boss.y += (boss.targetY - boss.y) * LEVEL4_BOSS_MOVE_LERP;
+
+                if(Math.abs(boss.x - boss.targetX) < 6 && Math.abs(boss.y - boss.targetY) < 6) {
+                    boss.phase = 'missileAttack';
+                    boss.attackTimer = 0;
+                }
+            }
+
+            // Phase 4: slow horizontal missiles toward player, player can damage boss
+            else if(boss.phase === 'missileAttack') {
+                boss.targetY = player.y - 6;
+                boss.y += (boss.targetY - boss.y) * LEVEL4_BOSS_MOVE_LERP;
+
+                if(boss.attackTimer === 1 || boss.attackTimer % 95 === 0) {
+                    let dir = boss.side === 'right' ? -1 : 1;
+                    bossMissiles.push({
+                        x: boss.x + (dir === 1 ? boss.w : -18),
+                        y: boss.y + boss.h / 2,
+                        w: 18,
+                        h: 6,
+                        vx: BOSS_MISSILE_SPEED * dir
+                    });
+                }
+
+                // After 5 seconds, return to hover-bomb phase
+                if(boss.attackTimer >= LEVEL4_PHASE_TIME) {
+                    boss.phase = 'hoverBomb';
+                    boss.attackTimer = 0;
+                    document.getElementById("msg").innerText = "Boss overhead! Dodge bombs!";
+                }
+            }
+        }
+
+        // Level 6 pure final boss fight
+        else if(level === 6) {
+            boss.attackTimer++;
+
+            // Boss size depends on remaining form
+            let targetSize = 35 + boss.form * 14;
+            boss.w += (targetSize - boss.w) * 0.08;
+            boss.h += (targetSize - boss.h) * 0.08;
+
+            // Hover above / beside player slowly
+            boss.targetX = canvas.width - 110;
+            boss.targetY = 55 + Math.sin(levelTimer * 0.025) * 18;
+
+            boss.x += (boss.targetX - boss.x) * 0.025;
+            boss.y += (boss.targetY - boss.y) * 0.025;
+
+            // Drop bomb every 3 seconds
+            if(boss.attackTimer % 180 === 0) {
+                bossBombs.push({
+                    x: boss.x + boss.w / 2 - 11,
+                    y: boss.y + boss.h,
+                    w: 22,
+                    h: 28,
+                    vy: LEVEL6_BOSS_BOMB_SPEED,
+                    level6: true
+                });
+            }
+
+            // Fire slow missile every 2 seconds
+            if(boss.attackTimer % 120 === 0) {
+                bossMissiles.push({
+                    x: boss.x - 28,
+                    y: boss.y + boss.h / 2,
+                    w: 28,
+                    h: 10,
+                    vx: -LEVEL6_BOSS_MISSILE_SPEED,
+                    level6: true
+                });
+            }
+
+            document.getElementById("msg").innerText =
+                "Final Boss Form " + boss.form + " - shrink it until it disappears!";
+        }
+
+        // Normal boss fallback
+        else {
+            let stopX = WORLD_WIDTH - 250;
+
+            if(boss.x < stopX){
+                if (boss.x < player.x - 200) {
+                    boss.x += BOSS_FAST_SPEED;
+                } else {
+                    boss.x += BOSS_SLOW_SPEED;
+                }
+
+                if(boss.x > stopX){
+                    boss.x = stopX;
+                }
             }
         }
 
@@ -452,55 +1469,708 @@ if(boss.active) {
     }
 }
 
-        // Boss 狙击逻辑 (Level 5 & 6)
-        if(laserEnemy.active) {
-            laserEnemy.timer++; if(laserEnemy.flash > 0) laserEnemy.flash--;
+// Boss bombs / sky projectiles
+bossBombs.forEach((bomb, bi) => {
+    // Level 5 sky projectiles are very readable:
+    // warning marker stays visible while the projectile slowly falls.
+    if(bomb.level5Sky && bomb.warningTimer > 0) {
+        bomb.warningTimer--;
+    }
 
-            // Slower laser timing: longer warning, easier reaction
-            laserEnemy.isWarning = (laserEnemy.timer > 120 && laserEnemy.timer < 200);
-            laserEnemy.isFiring = (laserEnemy.timer >= 200 && laserEnemy.timer < 240);
+    bomb.y += bomb.vy;
 
-            if(laserEnemy.timer >= 240) laserEnemy.timer = 0;
-	    // 碰到紫色Boss直接死亡
-	    if(laserEnemy.active && colCheck(player, laserEnemy)) {
-    triggerDie();
-}            
-	    if(
-    laserEnemy.isFiring &&
-    player.x < laserEnemy.x &&
-    player.y + player.h > laserEnemy.y + 10 &&
-    player.y < laserEnemy.y + 40
-){
-    triggerDie();
+    if(colCheck(player, bomb)) {
+        bossBombs.splice(bi, 1);
+        triggerDie();
+        return;
+    }
+
+    // Keep visible until it reaches the ground platform
+    if(bomb.y + bomb.h >= 200 || bomb.y > canvas.height + 80) {
+        bossBombs.splice(bi, 1);
+    }
+});
+
+// Boss missiles
+bossMissiles.forEach((m, mi) => {
+    m.x += m.vx;
+
+    if(colCheck(player, m)) {
+        bossMissiles.splice(mi, 1);
+        triggerDie();
+        return;
+    }
+
+    if(m.x < cameraX - 50 || m.x > cameraX + canvas.width + 50) {
+        bossMissiles.splice(mi, 1);
+    }
+});
+
+// Level 4 after boss defeat:
+// Player automatically moves right into the next screen and enters the rocket.
+// This works even if the player was standing at the right edge when the boss died.
+if(level === 4 && boss.defeated && level4ExitOpen && gameState === 'playing') {
+    level4Transition = true;
+    player.dir = 1;
+
+    // Force auto-run to the rocket
+    player.velX = 2.0;
+    player.x += 2.0;
+
+    // Push player across the old arena edge if needed
+    if(player.x < level4BossScreenWidth + 5) {
+        player.x += 1.0;
+    }
+
+    // Keep player on the ground path
+    if(player.y + player.h > 200) {
+        player.y = 200 - player.h;
+        player.velY = 0;
+        player.grounded = true;
+    }
+
+    if(colCheck(player, goal)) {
+        level4Transition = false;
+        showQuiz();
+        gameState = 'quiz';
+    }
 }
-}
+
+        // Dynamic Level 5 Boss logic - laser removed.
+        // New attack pattern:
+        // 1) Boss keeps moving / floating between arena positions.
+        // 2) Boss fires 3 sky projectiles.
+        // 3) Each projectile warns the landing spot near the player, then drops.
+        // 4) Below 50% HP, boss repeatedly spawns ground minions that chase the player.
+        if(laserEnemy.active && (level !== 5 || level5BossFightStarted || level5ExitOpen)) {
+            laserEnemy.timer++;
+            laserEnemy.moveTimer++;
+            if(laserEnemy.flash > 0) laserEnemy.flash--;
+
+            if(level === 5) {
+                const arenaStart = level5BossScreenWidth - canvas.width;
+                const arenaLeft = arenaStart + 18;
+                const arenaRight = level5BossScreenWidth - 18;
+
+                // Slow, predictable boss movement:
+                // The boss stays near the right side and moves up/down between 3 fixed heights.
+                // This gives the player time to read the pattern and use the 3 floating platforms.
+                const bossFixedX = level5BossScreenWidth - 95;
+                const bossYPositions = [92, 126, 156];
+                const bossYIndex = Math.floor(laserEnemy.moveTimer / 150) % bossYPositions.length;
+
+                laserEnemy.targetX = bossFixedX;
+                laserEnemy.targetY = bossYPositions[bossYIndex];
+
+                laserEnemy.x += (laserEnemy.targetX - laserEnemy.x) * 0.035;
+                laserEnemy.y += (laserEnemy.targetY - laserEnemy.y) * 0.025;
+
+                // Sky projectile cycle:
+                // 1) Fire 3 projectiles from above the visible screen.
+                // 2) Wait until all 3 reach the ground.
+                // 3) Wait 3 seconds, then fire the next volley.
+                const activeLevel5SkyShots = bossBombs.some(b => b.level5Sky);
+
+                if(laserEnemy.skyVolleyActive && !activeLevel5SkyShots) {
+                    laserEnemy.skyVolleyActive = false;
+                    laserEnemy.skyCooldown = 180;
+                }
+
+                if(!laserEnemy.skyVolleyActive && !activeLevel5SkyShots) {
+                    laserEnemy.skyCooldown = (laserEnemy.skyCooldown === undefined) ? 60 : laserEnemy.skyCooldown - 1;
+
+                    if(laserEnemy.skyCooldown <= 0) {
+                        laserEnemy.skyVolleyActive = true;
+
+                        [-70, 0, 70].forEach((offset, idx) => {
+                            const randomSpread = (seededRandom(levelTimer + idx * 31) - 0.5) * 55;
+                            let targetX = player.x + player.w / 2 + offset + randomSpread;
+                            targetX = Math.max(arenaLeft + 20, Math.min(targetX, arenaRight - 35));
+
+                            bossBombs.push({
+                                x: targetX,
+                                // Spawn outside the top of the screen.
+                                // It takes about 8 seconds / 480 frames to reach the ground.
+                                y: -220,
+                                w: 20,
+                                h: 20,
+                                vy: 0.833,
+                                level5Sky: true,
+                                warningTimer: 480,
+                                targetX: targetX,
+                                startY: -220
+                            });
+                        });
+
+                        document.getElementById("msg").innerText = "Boss fires slow sky projectiles! Watch the warning markers!";
+                    }
+                }
+
+                // Horizontal missile attack every 8 seconds.
+                // Fired only through the middle lane and moves slowly enough to take about 8 seconds to exit the screen.
+                laserEnemy.missileTimer = (laserEnemy.missileTimer || 0) + 1;
+                if(laserEnemy.missileTimer >= 480) {
+                    laserEnemy.missileTimer = 0;
+
+                    bossMissiles.push({
+                        x: laserEnemy.x - 16,
+                        y: 145,
+                        w: 14,
+                        h: 5,
+                        vx: -0.83,
+                        level5Missile: true
+                    });
+
+                    document.getElementById("msg").innerText = "Boss fires a slow middle-lane missile! Use the platform or jump timing!";
+                }
+
+                // Below 50% HP, keep spawning ground enemies until the boss is defeated.
+                // They chase the player and bounce at the boss screen edges. They remain until destroyed.
+                if(laserEnemy.hp <= laserEnemy.maxHp / 2) {
+                    if(!laserEnemy.summoned) {
+                        laserEnemy.summoned = true;
+                        laserEnemy.spawnTimer = 1;
+                        document.getElementById("msg").innerText = "Boss is weakened! Ground enemies incoming!";
+                    }
+
+                    laserEnemy.spawnTimer = (laserEnemy.spawnTimer || 0) - 1;
+                    const currentMinions = enemies.filter(e => e.bossMinion).length;
+
+                    if(laserEnemy.spawnTimer <= 0 && currentMinions < 5) {
+                        const spawnFromLeft = seededRandom(levelTimer + laserEnemy.hp * 13) > 0.5;
+                        const spawnX = spawnFromLeft ? arenaLeft + 20 : arenaRight - 40;
+
+                        enemies.push({
+                            x: spawnX,
+                            y: 184,
+                            w: 16,
+                            h: 16,
+                            speed: 0.32,
+                            range: 0,
+                            startX: spawnX,
+                            dir: spawnFromLeft ? 1 : -1,
+                            patrol: true,
+                            bossMinion: true,
+                            arenaLeft: arenaLeft,
+                            arenaRight: arenaRight,
+                            shooter: false,
+                            hasFired: true
+                        });
+
+                        laserEnemy.spawnTimer = 600;
+                    }
+                }
+
+                // Reset attack cycle after sky projectile volley.
+                if(laserEnemy.timer >= 240) laserEnemy.timer = 0;
+            }
+
+            // Laser disabled for this boss version.
+            laserEnemy.isWarning = false;
+            laserEnemy.isFiring = false;
+
+            // Touching the boss kills the player.
+            if(laserEnemy.active && colCheck(player, laserEnemy)) {
+                triggerDie();
+            }
+        }
         bullets.forEach((b, bi) => {
             b.x += b.vx;
             enemies.forEach((e, ei) => { if(colCheck(b, e)) { enemies.splice(ei, 1); bullets.splice(bi, 1); }});
-            if(boss.active && colCheck(b, boss)) { boss.hp--; boss.flash=5; bullets.splice(bi, 1); if(boss.hp<=0) boss.active=false; }
-            if(laserEnemy.active && colCheck(b, laserEnemy)) { laserEnemy.hp--; laserEnemy.flash=5; bullets.splice(bi, 1); if(laserEnemy.hp<=0) laserEnemy.active=false; }
+
+            bombers.forEach((bm, bmi) => {
+                if(colCheck(b, bm)) {
+                    bombers.splice(bmi, 1);
+                    bullets.splice(bi, 1);
+                }
+            });
+
+            if(boss.active && colCheck(b, boss)) {
+                boss.hp--;
+                boss.flash=5;
+                bullets.splice(bi, 1);
+
+                if(boss.hp<=0) {
+                    if(level === 4) {
+                        boss.active = false;
+                        boss.defeated = true;
+                        level4ExitOpen = true;
+                        level4Transition = true;
+                        bossBombs = [];
+                        bossMissiles = [];
+                        document.getElementById("msg").innerText = "Boss defeated! Run to the rocket!";
+                    } else {
+                        boss.active=false;
+                    }
+                }
+            }
+            if(laserEnemy.active && colCheck(b, laserEnemy)) {
+                laserEnemy.hp--;
+                laserEnemy.flash=5;
+                bullets.splice(bi, 1);
+
+                if(laserEnemy.hp<=0) {
+                    laserEnemy.active=false;
+
+                    if(level === 5) {
+                        laserEnemy.defeated = true;
+                        level5ExitOpen = true;
+                        level5Transition = true;
+                        document.getElementById("msg").innerText = "Laser Boss defeated! Proceed to the rocket!";
+                    }
+                }
+            }
             if(b.x < cameraX || b.x > cameraX + 450) bullets.splice(bi, 1);
         });
 
-        enemies.forEach(e => { e.x += e.speed*e.dir; if(Math.abs(e.x-e.startX)>e.range) e.dir*=-1; if(colCheck(player,e)) triggerDie(); });
-        if(player.y > canvas.height) triggerDie();
+
+        // Platform enemy one-shot projectiles for Levels 1, 2 and 5.
+        // Level 3 keeps its own special shooter logic below.
+        if(level !== 3 && enemyProjectiles) {
+            (enemies || []).forEach(e => {
+                if(e.shooter && !e.hasFired) {
+                    e.dir = player.x < e.x ? -1 : 1;
+
+                    let enemyVisible = e.x >= cameraX - 20 && e.x <= cameraX + canvas.width + 20;
+                    let playerVisible = player.x >= cameraX - 20 && player.x <= cameraX + canvas.width + 20;
+                    let playerClose = Math.abs(player.x - e.x) < (e.sightRange || 280);
+                    let heightClose = Math.abs((player.y + player.h) - (e.y + e.h)) < 60;
+
+                    if(enemyVisible && playerVisible && playerClose && heightClose) {
+                        enemyProjectiles.push({
+                            x: e.x + (e.dir === 1 ? e.w : -18),
+                            y: e.y + 8,
+                            w: 18,
+                            h: 6,
+                            vx: (e.projectileSpeed || PLATFORM_ENEMY_PROJECTILE_SPEED) * e.dir
+                        });
+
+                        e.hasFired = true;
+                    }
+                }
+            });
+
+            enemyProjectiles.forEach((p, pi) => {
+                p.x += p.vx;
+
+                if(colCheck(player, p)) {
+                    enemyProjectiles.splice(pi, 1);
+                    triggerDie();
+                    return;
+                }
+
+                if(p.x < cameraX - 100 || p.x > cameraX + canvas.width + 100) {
+                    enemyProjectiles.splice(pi, 1);
+                }
+            });
+        }
+
+
+        // Level 3 shooter enemy update
+        if(level === 3) {
+            (enemies || []).forEach(e => {
+                if(e.shooter) {
+                    e.dir = player.x < e.x ? -1 : 1;
+
+                    let shooterVisible =
+                        e.x >= cameraX &&
+                        e.x <= cameraX + canvas.width;
+
+                    let playerVisible =
+                        player.x >= cameraX &&
+                        player.x <= cameraX + canvas.width;
+
+                    let playerInSight =
+                        !e.hasFired &&
+                        shooterVisible &&
+                        playerVisible &&
+                        Math.abs(player.x - e.x) < e.sightRange &&
+                        Math.abs((player.y + player.h) - (e.y + e.h)) < 55;
+
+                    if(playerInSight) {
+                        enemyProjectiles.push({
+                            x: e.x + (e.dir === 1 ? e.w : -18),
+                            y: e.y + 8,
+                            w: 18,
+                            h: 6,
+                            vx: ENEMY_PROJECTILE_SPEED * e.dir
+                        });
+
+                        e.hasFired = true;
+                    }
+                }
+
+                if(colCheck(player, e)) triggerDie();
+            });
+
+            enemyProjectiles.forEach((p, pi) => {
+                p.x += p.vx;
+
+                if(colCheck(player, p)) {
+                    enemyProjectiles.splice(pi, 1);
+                    triggerDie();
+                    return;
+                }
+
+                if(p.x < cameraX - 80 || p.x > cameraX + canvas.width + 80) {
+                    enemyProjectiles.splice(pi, 1);
+                }
+            });
+
+            if(level !== 2) (bombers || []).forEach(bm => {
+                bm.randomTimer--;
+
+                if(bm.randomTimer <= 0) {
+                    bm.dir = seededRandom(levelTimer + Math.floor(bm.x)) > 0.5 ? 1 : -1;
+                    bm.randomTimer = 120 + Math.floor(seededRandom(levelTimer * 3) * 120);
+                }
+
+                bm.x += bm.speed * bm.dir;
+                
+            // Strong Level 2 screen clamp: bomber cannot leave the visible screen
+            if(level === 2 && bm.screenLocked) {
+                let leftLimit = cameraX + LEVEL2_BOMBER_SCREEN_MARGIN;
+                let rightLimit = cameraX + canvas.width - LEVEL2_BOMBER_SCREEN_MARGIN - bm.w;
+
+                if(bm.x <= leftLimit) {
+                    bm.x = leftLimit;
+                    bm.dir = 1;
+                }
+
+                if(bm.x >= rightLimit) {
+                    bm.x = rightLimit;
+                    bm.dir = -1;
+                }
+            }
+
+bm.y += (28 - bm.y) * 0.04;
+
+                if(bm.x < cameraX + 40) {
+                    bm.x = cameraX + 40;
+                    bm.dir = 1;
+                }
+
+                if(bm.x > cameraX + canvas.width - 70) {
+                    bm.x = cameraX + canvas.width - 70;
+                    bm.dir = -1;
+                }
+
+                bm.dropTimer--;
+
+                if(bm.dropTimer <= 0) {
+                    bombs.push({
+                        x: bm.x + bm.w / 2 - 7,
+                        y: bm.y + bm.h,
+                        w: 14,
+                        h: 18,
+                        vy: LEVEL3_BOMBER_BOMB_SPEED
+                    });
+
+                    bm.dropTimer = LEVEL3_BOMBER_BOMB_DELAY;
+                }
+
+                if(colCheck(player, bm)) triggerDie();
+            });
+
+            bombs.forEach((bomb, bi) => {
+                bomb.y += bomb.vy;
+
+                if(colCheck(player, bomb)) {
+                    bombs.splice(bi, 1);
+                    triggerDie();
+                    return;
+                }
+
+                if(bomb.y + bomb.h >= 200 || bomb.y > canvas.height + 80) {
+                    bombs.splice(bi, 1);
+                }
+            });
+        }
+
+        if(level !== 3) {
+            enemies.forEach(e => {
+                if(e.bossMinion) {
+                    // Level 5 boss minions chase the player, then bounce at screen edges.
+                    e.dir = player.x < e.x ? -1 : 1;
+                    e.x += e.speed * e.dir;
+
+                    if(e.x <= e.arenaLeft) {
+                        e.x = e.arenaLeft;
+                        e.dir = 1;
+                    }
+
+                    if(e.x + e.w >= e.arenaRight) {
+                        e.x = e.arenaRight - e.w;
+                        e.dir = -1;
+                    }
+                } else {
+                    e.x += e.speed * e.dir;
+                    if(Math.abs(e.x - e.startX) > e.range) e.dir *= -1;
+                }
+
+                if(colCheck(player, e)) triggerDie();
+            });
+        }
+        
+        // Flying bomber update
+        (bombers || []).forEach(bm => {
+            bm.x += bm.speed * bm.dir;
+
+            if(level !== 2 && Math.abs(bm.x - bm.startX) > bm.range) {
+                bm.dir *= -1;
+            }
+
+            bm.dropTimer--;
+
+            // Drop bomb when the player is horizontally nearby
+            let playerClose = Math.abs((bm.x + bm.w / 2) - (player.x + player.w / 2)) < 210;
+
+            if(playerClose && bm.dropTimer <= 0) {
+                bombs.push({
+                    x: bm.x + bm.w / 2 - 5,
+                    y: bm.y + bm.h,
+                    w: 10,
+                    h: 12,
+                    vy: BOMB_FALL_SPEED
+                });
+
+                bm.dropTimer = BOMB_DROP_DELAY;
+            }
+
+            if(colCheck(player, bm)) {
+                triggerDie();
+            }
+        });
+
+        // Bomb update
+        bombs.forEach((bomb, bi) => {
+            bomb.y += bomb.vy;
+
+            if(colCheck(player, bomb)) {
+                bombs.splice(bi, 1);
+                triggerDie();
+                return;
+            }
+
+            let hitPlatform = platforms.some(p => colCheck(bomb, p));
+            if(hitPlatform || bomb.y > canvas.height + 80) {
+                bombs.splice(bi, 1);
+            }
+        });
+
+// Level 3 enemy, projectile, bomber update
+        if(level === 3) {
+            enemies.forEach(e => {
+                if(e.shooter) {
+                    e.dir = player.x < e.x ? -1 : 1;
+
+                    let shooterVisible =
+                        e.x >= cameraX &&
+                        e.x <= cameraX + canvas.width;
+
+                    let playerVisible =
+                        player.x >= cameraX &&
+                        player.x <= cameraX + canvas.width;
+
+                    let playerInSight =
+                        !e.hasFired &&
+                        shooterVisible &&
+                        playerVisible &&
+                        Math.abs(player.x - e.x) < e.sightRange &&
+                        Math.abs((player.y + player.h) - (e.y + e.h)) < 55;
+
+                    if(playerInSight) {
+                        enemyProjectiles.push({
+                            x: e.x + (e.dir === 1 ? e.w : -18),
+                            y: e.y + 8,
+                            w: 18,
+                            h: 6,
+                            vx: ENEMY_PROJECTILE_SPEED * e.dir
+                        });
+
+                        e.hasFired = true;
+                    }
+                }
+
+                if(e.patrol) {
+                    e.x += e.speed * e.dir;
+
+                    if(e.x < e.startX || e.x > e.startX + e.range) {
+                        e.dir *= -1;
+                    }
+                }
+
+                if(colCheck(player, e)) triggerDie();
+            });
+
+            enemyProjectiles.forEach((p, pi) => {
+                p.x += p.vx;
+
+                if(colCheck(player, p)) {
+                    enemyProjectiles.splice(pi, 1);
+                    triggerDie();
+                    return;
+                }
+
+                if(p.x < cameraX - 80 || p.x > cameraX + canvas.width + 80) {
+                    enemyProjectiles.splice(pi, 1);
+                }
+            });
+
+            if(level !== 2) bombers.forEach(bm => {
+                bm.randomTimer--;
+
+                if(bm.randomTimer <= 0) {
+                    bm.dir = seededRandom(levelTimer + Math.floor(bm.x)) > 0.5 ? 1 : -1;
+                    bm.randomTimer = 120 + Math.floor(seededRandom(levelTimer * 3) * 120);
+                }
+
+                bm.x += bm.speed * bm.dir;
+                bm.y += (28 - bm.y) * 0.04;
+
+                if(bm.x < cameraX + 40) {
+                    bm.x = cameraX + 40;
+                    bm.dir = 1;
+                }
+
+                if(bm.x > cameraX + canvas.width - 70) {
+                    bm.x = cameraX + canvas.width - 70;
+                    bm.dir = -1;
+                }
+
+                bm.dropTimer--;
+
+                if(bm.dropTimer <= 0) {
+                    bombs.push({
+                        x: bm.x + bm.w / 2 - 7,
+                        y: bm.y + bm.h,
+                        w: 14,
+                        h: 18,
+                        vy: LEVEL3_BOMBER_BOMB_SPEED
+                    });
+
+                    bm.dropTimer = LEVEL3_BOMBER_BOMB_DELAY;
+                }
+
+                if(colCheck(player, bm)) triggerDie();
+            });
+
+            bombs.forEach((bomb, bi) => {
+                bomb.y += bomb.vy;
+
+                if(colCheck(player, bomb)) {
+                    bombs.splice(bi, 1);
+                    triggerDie();
+                    return;
+                }
+
+                if(bomb.y + bomb.h >= 200 || bomb.y > canvas.height + 80) {
+                    bombs.splice(bi, 1);
+                }
+            });
+        }
+// Level 2 bomb update
+        if(level === 2 && bombs) {
+            bombs.forEach((bomb, bi) => {
+                bomb.y += bomb.vy;
+
+                if(colCheck(player, bomb)) {
+                    bombs.splice(bi, 1);
+                    triggerDie();
+                    return;
+                }
+
+                if(bomb.y + bomb.h >= 200 || bomb.y > canvas.height + 80) {
+                    bombs.splice(bi, 1);
+                }
+            });
+        }
+
+	
+        // Level 2 screen-relative bomber:
+        // Higher, slower, always visible, drops bomb every 5 seconds.
+        if(level === 2 && bombers && bombers.length > 0) {
+            let bm = bombers[0];
+
+            let leftLimit = cameraX + 70;
+            let rightLimit = cameraX + canvas.width - 110;
+
+            // Slow smooth hovering movement
+            let t = levelTimer * LEVEL2_BOMBER_HOVER_SPEED;
+            bm.x = leftLimit + (Math.sin(t) + 1) * 0.5 * (rightLimit - leftLimit);
+            bm.y = LEVEL2_BOMBER_SCREEN_Y;
+
+            bm.dropTimer--;
+
+            if(bm.dropTimer <= 0) {
+                bombs.push({
+                    x: bm.x + bm.w / 2 - 7,
+                    y: bm.y + bm.h,
+                    w: 14,
+                    h: 18,
+                    vy: LEVEL2_BOMBER_BOMB_SPEED
+                });
+
+                bm.dropTimer = LEVEL2_BOMBER_BOMB_DELAY;
+            }
+
+            // It is now too high for the player to touch, but keep collision for safety.
+            if(colCheck(player, bm)) {
+                triggerDie();
+            }
+        }
+
+	
+
+// Level 5 after Laser Boss defeat:
+// Player automatically moves right into the next screen and enters the rocket.
+if(level === 5 && laserEnemy.defeated && level5ExitOpen && gameState === 'playing') {
+    level5Transition = true;
+    player.dir = 1;
+
+    player.velX = 2.0;
+    player.x += 2.0;
+
+    if(player.x < level5BossScreenWidth + 5) {
+        player.x += 1.0;
+    }
+
+    if(player.y + player.h > 200) {
+        player.y = 200 - player.h;
+        player.velY = 0;
+        player.grounded = true;
+    }
+
+    if(colCheck(player, goal)) {
+        level5Transition = false;
+        showQuiz();
+        gameState = 'quiz';
+    }
+}
+
+// Level 6 complete when final boss fully disappears
+if(level === 6 && boss.defeated && !boss.active && gameState === 'playing') {
+    showQuiz();
+    gameState = 'quiz';
+}
+
+	if(player.y > canvas.height) triggerDie();
 	if(colCheck(player, goal)) {
 
-    if(level === 4 && boss.active){
+    if(level === 4 && (!boss.defeated || !level4ExitOpen)){
         document.getElementById("msg").innerText =
-            "必须消灭追击Boss才能通关！";
+            "Defeat the boss first!";
+        return;
+    }
+    if(level === 5 && (!laserEnemy.defeated || !level5ExitOpen)){
+        document.getElementById("msg").innerText =
+            "Defeat the Laser Boss first!";
         return;
     }
 
-    if(level === 5 && laserEnemy.active){
+    if(level === 6 && boss.active){
         document.getElementById("msg").innerText =
-            "必须消灭激光Boss才能通关！";
-        return;
-    }
-
-    if(level === 6 && (boss.active || laserEnemy.active)){
-        document.getElementById("msg").innerText =
-            "必须消灭所有Boss才能通关！";
+            "Defeat the final boss first!";
         return;
     }
 
@@ -717,20 +2387,140 @@ ctx.fillRect(laserEnemy.x+32, laserEnemy.y-6, 2, 6);
 // 手臂
 ctx.fillRect(laserEnemy.x, laserEnemy.y+18, 6, 3);
 ctx.fillRect(laserEnemy.x+39, laserEnemy.y+18, 6, 3);
-            ctx.fillStyle='red'; ctx.fillRect(laserEnemy.x, laserEnemy.y-10, laserEnemy.w, 3);
-            ctx.fillStyle='lime'; ctx.fillRect(laserEnemy.x, laserEnemy.y-10, (laserEnemy.hp/50)*laserEnemy.w, 3);
-            if(laserEnemy.isWarning) { ctx.strokeStyle='white'; ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.moveTo(cameraX, laserEnemy.y+22); ctx.lineTo(laserEnemy.x, laserEnemy.y+22); ctx.stroke(); ctx.setLineDash([]);}
-            if(laserEnemy.isFiring) {
-    ctx.fillStyle='rgba(255,50,50,0.7)';
 
-    ctx.fillRect(
-        cameraX,
-        laserEnemy.y + 12,
-        laserEnemy.x - cameraX,
-        20
-    );
+// Moving boss glow
+if(level === 5 && level5BossFightStarted) {
+    ctx.strokeStyle = 'rgba(255, 0, 255, 0.65)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(laserEnemy.x - 3, laserEnemy.y - 8, laserEnemy.w + 6, laserEnemy.h + 10);
 }
+            ctx.fillStyle='red'; ctx.fillRect(laserEnemy.x, laserEnemy.y-10, laserEnemy.w, 3);
+            ctx.fillStyle='lime'; ctx.fillRect(laserEnemy.x, laserEnemy.y-10, (laserEnemy.hp/laserEnemy.maxHp)*laserEnemy.w, 3);
+            // Laser removed: boss now uses falling sky projectiles instead.
+            if(level === 5 && level5BossFightStarted) {
+                ctx.fillStyle = '#FFFF00';
+                ctx.fillRect(laserEnemy.x + 18, laserEnemy.y - 14, 8, 8);
+            }
 }
+
+        // Flying bomber enemy sprite
+        (bombers || []).forEach(bm => {
+            // Red bomber body
+            ctx.fillStyle = '#FF3333';
+            ctx.fillRect(bm.x + 4, bm.y + 7, 26, 9);
+
+            // Blue glass dome
+            ctx.fillStyle = '#87CEFA';
+            ctx.fillRect(bm.x + 11, bm.y + 1, 12, 8);
+
+            // Yellow wings
+            ctx.fillStyle = '#FFD700';
+            ctx.fillRect(bm.x, bm.y + 10, 7, 5);
+            ctx.fillRect(bm.x + 27, bm.y + 10, 7, 5);
+
+            // Black bottom bomb bay
+            ctx.fillStyle = '#111111';
+            ctx.fillRect(bm.x + 12, bm.y + 17, 10, 4);
+
+            // Engine glow
+            ctx.fillStyle = '#FF9900';
+            ctx.fillRect(bm.x + 7, bm.y + 20, 5, 3);
+            ctx.fillRect(bm.x + 22, bm.y + 20, 5, 3);
+
+            // Direction light
+            ctx.fillStyle = '#FFFFFF';
+            if(bm.dir > 0) {
+                ctx.fillRect(bm.x + 25, bm.y + 8, 3, 3);
+            } else {
+                ctx.fillRect(bm.x + 6, bm.y + 8, 3, 3);
+            }
+        });
+
+        // Bomb sprite
+        (bombs || []).forEach(bomb => {
+            ctx.fillStyle = '#222222';
+            ctx.fillRect(bomb.x, bomb.y, bomb.w, bomb.h);
+
+            ctx.fillStyle = '#FF6600';
+            ctx.fillRect(bomb.x + 2, bomb.y + bomb.h - 3, bomb.w - 4, 3);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(bomb.x + 2, bomb.y + 2, 2, 2);
+        });
+
+
+
+        // Level 5 invisible arena wall indicator while Laser Boss is alive
+        if(level === 5 && level5BossFightStarted && !level5ExitOpen) {
+            ctx.fillStyle = 'rgba(255, 80, 80, 0.35)';
+            ctx.fillRect(level5BossScreenWidth - 4, 0, 4, 200);
+
+            ctx.fillStyle = '#FF8888';
+            ctx.font = '10px Courier New';
+            ctx.fillText('LASER BOSS WALL', level5BossScreenWidth - 110, 18);
+        }
+
+        // Level 4 invisible arena wall indicator while boss is alive
+        if(level === 4 && !level4ExitOpen) {
+            ctx.fillStyle = 'rgba(255, 215, 0, 0.35)';
+            ctx.fillRect(level4BossScreenWidth - 4, 0, 4, 200);
+
+            ctx.fillStyle = '#FFD700';
+            ctx.font = '10px Courier New';
+            ctx.fillText('BOSS WALL', level4BossScreenWidth - 70, 18);
+        }
+
+        // Level 3 slow enemy projectiles
+        if(level === 3 && enemyProjectiles) {
+            enemyProjectiles.forEach(p => {
+                ctx.fillStyle = '#FF8800';
+                ctx.fillRect(p.x, p.y, p.w, p.h);
+
+                ctx.fillStyle = '#FFFF00';
+                if(p.vx < 0) {
+                    ctx.fillRect(p.x + p.w, p.y + 1, 5, 4);
+                } else {
+                    ctx.fillRect(p.x - 5, p.y + 1, 5, 4);
+                }
+            });
+        }
+
+        // Level 3 bomber bombs
+        if(level === 3 && bombs) {
+            bombs.forEach(bomb => {
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(bomb.x, bomb.y, bomb.w, bomb.h);
+
+                ctx.fillStyle = '#FF3333';
+                ctx.fillRect(bomb.x + 2, bomb.y + 2, bomb.w - 4, bomb.h - 4);
+
+                ctx.fillStyle = '#FFFF00';
+                ctx.fillRect(bomb.x + 3, bomb.y + bomb.h - 4, bomb.w - 6, 3);
+            });
+        }
+
+        // Level 3 high bomber sprite
+        if(level === 3 && bombers) {
+            bombers.forEach(bm => {
+                ctx.fillStyle = '#FF3333';
+                ctx.fillRect(bm.x + 4, bm.y + 7, 26, 9);
+
+                ctx.fillStyle = '#87CEFA';
+                ctx.fillRect(bm.x + 11, bm.y + 1, 12, 8);
+
+                ctx.fillStyle = '#FFD700';
+                ctx.fillRect(bm.x, bm.y + 10, 7, 5);
+                ctx.fillRect(bm.x + 27, bm.y + 10, 7, 5);
+
+                ctx.fillStyle = '#111111';
+                ctx.fillRect(bm.x + 12, bm.y + 17, 10, 4);
+
+                ctx.fillStyle = '#FF9900';
+                ctx.fillRect(bm.x + 7, bm.y + 20, 5, 3);
+                ctx.fillRect(bm.x + 22, bm.y + 20, 5, 3);
+            });
+        }
+
         // 外星人
 enemies.forEach(e => {
 
@@ -753,7 +2543,18 @@ enemies.forEach(e => {
     ctx.fillStyle = c.body;
     ctx.fillRect(e.x+4, e.y-3, 1, 3);
     ctx.fillRect(e.x+11, e.y-3, 1, 3);
+
+    // Shooter cannon
+    if(e.shooter) {
+        ctx.fillStyle = '#FFFFFF';
+        if(e.dir > 0) {
+            ctx.fillRect(e.x + 14, e.y + 7, 8, 3);
+        } else {
+            ctx.fillRect(e.x - 6, e.y + 7, 8, 3);
+        }
+    }
 });
+        if(!(level === 4 && !level4ExitOpen) && !(level === 5 && !level5ExitOpen) && !(level === 6 && boss.active)) {
         // 火箭底部贴地基准
 let x = goal.x;
 let baseY = goal.y + goal.h; // 👈 地面
@@ -792,6 +2593,7 @@ ctx.fillRect(goal.x+10, baseY, 4, flame);
 
 ctx.fillStyle = '#FFFF00';
 ctx.fillRect(goal.x+16, baseY, 4, flame-1);
+        }
       
  // 太空人
 ctx.fillStyle = '#FFFFFF'; // 头盔
@@ -805,7 +2607,258 @@ ctx.fillRect(player.x+2, player.y+12, 10, 6);
 
 ctx.fillStyle = '#FFD700'; // 氧气背包
 ctx.fillRect(player.x+1, player.y+12, 3, 5);
+
         ctx.restore();
+
+    // Draw slow platform-enemy projectiles clearly on all non-Level-3 stages.
+    if(level !== 3 && enemyProjectiles && enemyProjectiles.length > 0) {
+        enemyProjectiles.forEach(p => {
+            const x = p.x - cameraX;
+            ctx.fillStyle = 'rgba(255, 255, 0, 0.45)';
+            ctx.fillRect(x - 3, p.y - 3, p.w + 6, p.h + 6);
+            ctx.fillStyle = '#FF8800';
+            ctx.fillRect(x, p.y, p.w, p.h);
+            ctx.fillStyle = '#FFFF00';
+            ctx.fillRect(x + 3, p.y + 1, p.w - 6, 4);
+        });
+    }
+
+    if(level === 5 && !level5ExitOpen) {
+        ctx.fillStyle = '#FF8888';
+        ctx.font = '12px Courier New';
+        ctx.fillText('LEVEL 5 BOSS - DEFEAT IT TO REACH THE ROCKET', 10, 215);
+    }
+
+
+    // Extra visual for Level 6 final boss forms
+    if(level === 6 && boss.active) {
+        ctx.save();
+        ctx.translate(-cameraX, 0);
+
+        ctx.fillStyle = 'rgba(255,0,0,0.25)';
+        ctx.beginPath();
+        ctx.arc(boss.x + boss.w/2, boss.y + boss.h/2, boss.w * 0.7, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#FF0000';
+        ctx.fillRect(boss.x + boss.w * 0.28, boss.y + boss.h * 0.30, 5, 5);
+        ctx.fillRect(boss.x + boss.w * 0.62, boss.y + boss.h * 0.30, 5, 5);
+
+        ctx.fillStyle = '#FFD700';
+        ctx.font = '12px Courier New';
+        ctx.fillText('FINAL FORM: ' + boss.form, boss.x, boss.y - 18);
+
+        ctx.restore();
+    }
+
+
+    // Draw Level 2 bomber and bombs last so they are always visible
+    if(level === 2 && bombers && bombers.length > 0) {
+        bombers.forEach(bm => {
+            const x = bm.x - cameraX;
+
+            ctx.fillStyle = '#FF3333';
+            ctx.fillRect(x + 4, bm.y + 7, 26, 9);
+
+            ctx.fillStyle = '#87CEFA';
+            ctx.fillRect(x + 11, bm.y + 1, 12, 8);
+
+            ctx.fillStyle = '#FFD700';
+            ctx.fillRect(x, bm.y + 10, 7, 5);
+            ctx.fillRect(x + 27, bm.y + 10, 7, 5);
+
+            ctx.fillStyle = '#111111';
+            ctx.fillRect(x + 12, bm.y + 17, 10, 4);
+        });
+
+        if(bombs) {
+            bombs.forEach(bomb => {
+                const x = bomb.x - cameraX;
+
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(x, bomb.y, bomb.w, bomb.h);
+
+                ctx.fillStyle = '#FF3333';
+                ctx.fillRect(x + 2, bomb.y + 2, bomb.w - 4, bomb.h - 4);
+
+                ctx.fillStyle = '#FFFF00';
+                ctx.fillRect(x + 3, bomb.y + bomb.h - 4, bomb.w - 6, 3);
+            });
+        }
+    }
+
+// GUARANTEED Level 3 enemy overlay draw
+    if(level === 3) {
+        // Draw enemy projectiles
+        if(enemyProjectiles) {
+            enemyProjectiles.forEach(p => {
+                ctx.fillStyle = '#FF8800';
+                ctx.fillRect(p.x - cameraX, p.y, p.w, p.h);
+                ctx.fillStyle = '#FFFF00';
+                ctx.fillRect(p.x - cameraX + 3, p.y + 1, p.w - 6, 4);
+            });
+        }
+
+        // Draw bombs
+        if(bombs) {
+            bombs.forEach(bomb => {
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(bomb.x - cameraX, bomb.y, bomb.w, bomb.h);
+                ctx.fillStyle = '#FF3333';
+                ctx.fillRect(bomb.x - cameraX + 2, bomb.y + 2, bomb.w - 4, bomb.h - 4);
+                ctx.fillStyle = '#FFFF00';
+                ctx.fillRect(bomb.x - cameraX + 3, bomb.y + bomb.h - 4, bomb.w - 6, 3);
+            });
+        }
+
+        // Draw bomber
+        if(bombers) {
+            bombers.forEach(bm => {
+                const x = bm.x - cameraX;
+
+                ctx.fillStyle = '#FF3333';
+                ctx.fillRect(x + 4, bm.y + 7, 26, 9);
+
+                ctx.fillStyle = '#87CEFA';
+                ctx.fillRect(x + 11, bm.y + 1, 12, 8);
+
+                ctx.fillStyle = '#FFD700';
+                ctx.fillRect(x, bm.y + 10, 7, 5);
+                ctx.fillRect(x + 27, bm.y + 10, 7, 5);
+
+                ctx.fillStyle = '#111111';
+                ctx.fillRect(x + 12, bm.y + 17, 10, 4);
+            });
+        }
+
+        // Draw ground enemies on top so they are obvious
+        if(enemies) {
+            enemies.forEach(e => {
+                const x = e.x - cameraX;
+
+                ctx.fillStyle = e.shooter ? '#AA00FF' : '#00FF66';
+                ctx.fillRect(x + 2, e.y + 4, 12, 10);
+
+                ctx.fillStyle = e.shooter ? '#DD99FF' : '#66FF99';
+                ctx.fillRect(x, e.y, 16, 8);
+
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(x + 3, e.y + 2, 2, 2);
+                ctx.fillRect(x + 11, e.y + 2, 2, 2);
+
+                if(e.shooter) {
+                    ctx.fillStyle = '#FFFFFF';
+                    if(e.dir > 0) ctx.fillRect(x + 14, e.y + 7, 8, 3);
+                    else ctx.fillRect(x - 6, e.y + 7, 8, 3);
+                }
+
+                if(e.patrol) {
+                    ctx.fillStyle = '#FF0000';
+                    ctx.fillRect(x + 2, e.y + 14, 4, 2);
+                    ctx.fillRect(x + 10, e.y + 14, 4, 2);
+                }
+            });
+        }
+
+        ctx.fillStyle = '#FFD700';
+        ctx.font = '12px Courier New';
+        ctx.fillText('L3 enemies: ' + (enemies ? enemies.length : 0) + ' | bomber: ' + (bombers ? bombers.length : 0) + ' | slow mode', 10, 230);
+    }
+
+
+    // Draw boss bombs LAST so Level 4 and Level 6 attacks are always visible
+    if((level === 4 || level === 5 || level === 6) && bossBombs && bossBombs.length > 0) {
+        bossBombs.forEach(bomb => {
+            const drawX = bomb.x - cameraX;
+
+            if(bomb.level5Sky) {
+                // Always draw the warning circle AND the falling projectile so the attack is visible.
+                const pulse = 0.45 + 0.35 * Math.abs(Math.sin(levelTimer * 0.12));
+
+                ctx.strokeStyle = '#FF3333';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([5, 3]);
+                ctx.beginPath();
+                ctx.ellipse(drawX + bomb.w / 2, 195, 18 + pulse * 5, 5 + pulse * 2, 0, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                ctx.fillStyle = 'rgba(255, 0, 0, 0.22)';
+                ctx.beginPath();
+                ctx.ellipse(drawX + bomb.w / 2, 195, 18 + pulse * 5, 5 + pulse * 2, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Purple falling orb, very visible against the space background.
+                ctx.fillStyle = 'rgba(255, 0, 255, 0.35)';
+                ctx.fillRect(drawX - 5, bomb.y - 5, bomb.w + 10, bomb.h + 10);
+
+                ctx.fillStyle = '#FF00FF';
+                ctx.fillRect(drawX, bomb.y, bomb.w, bomb.h);
+
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillRect(drawX + 5, bomb.y + 5, 8, 8);
+
+                // Dotted fall guide similar to the reference image.
+                ctx.strokeStyle = '#CC00FF';
+                ctx.setLineDash([4, 6]);
+                ctx.beginPath();
+                ctx.moveTo(drawX + bomb.w / 2, bomb.y + bomb.h);
+                ctx.lineTo(drawX + bomb.w / 2, 190);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                return;
+            }
+
+            // bright outer warning glow
+            ctx.fillStyle = 'rgba(255, 255, 0, 0.35)';
+            ctx.fillRect(drawX - 3, bomb.y - 3, bomb.w + 6, bomb.h + 6);
+
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(drawX, bomb.y, bomb.w, bomb.h);
+
+            ctx.fillStyle = level === 6 ? '#FF00FF' : '#FF0000';
+            ctx.fillRect(drawX + 2, bomb.y + 2, bomb.w - 4, bomb.h - 4);
+
+            ctx.fillStyle = '#FFFF00';
+            ctx.fillRect(drawX + 4, bomb.y + bomb.h - 6, bomb.w - 8, 5);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(drawX + 4, bomb.y + 4, 5, 5);
+        });
+    }
+
+    // Draw boss missiles LAST so Level 4 and Level 6 shots are clearly visible
+    if((level === 4 || level === 5 || level === 6) && bossMissiles && bossMissiles.length > 0) {
+        bossMissiles.forEach(m => {
+            const drawX = m.x - cameraX;
+
+            // bright trail/outline
+            ctx.fillStyle = 'rgba(255, 255, 0, 0.45)';
+            ctx.fillRect(drawX - 4, m.y - 3, m.w + 8, m.h + 6);
+
+            ctx.fillStyle = m.level5Missile ? '#FF3333' : (level === 6 ? '#00FFFF' : '#FF6600');
+            ctx.fillRect(drawX, m.y, m.w, m.h);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(drawX + 3, m.y + 2, Math.max(4, m.w - 8), Math.max(2, m.h - 4));
+
+            ctx.fillStyle = '#FFFF00';
+            if(m.vx < 0) {
+                const flameW = m.level5Missile ? 4 : 8;
+                ctx.fillRect(drawX + m.w, m.y + 1, flameW, Math.max(2, m.h - 2));
+            } else {
+                const flameW = m.level5Missile ? 4 : 8;
+                ctx.fillRect(drawX - flameW, m.y + 1, flameW, Math.max(2, m.h - 2));
+            }
+        });
+    }
+
+    if(level === 4 && boss.active) {
+        ctx.fillStyle = '#FFD700';
+        ctx.font = '12px Courier New';
+        ctx.fillText('BOSS PHASE: ' + boss.phase + ' | EXIT: ' + (level4ExitOpen ? 'OPEN' : 'LOCKED'), 10, 230);
+    }
+
     }
 
     function loop() {
@@ -823,16 +2876,17 @@ function handleAnswer(selected, quiz) {
         document.getElementById('quizFeedback').innerText = "答对了！";
 
         setTimeout(() => {
-            level++;
-            gameState = 'playing';
+            const completedLevel = level;
+            const completedTime = levelTimer / 60;
+
             document.getElementById('quiz-overlay').style.display = 'none';
 
-            if (level > 6) {
-                alert("恭喜通关所有关卡！");
-                level = 1;
+            if(practiceMode) {
+                showLevelResult(completedLevel, completedTime, "Practice");
+            } else {
+                const rank = saveScore(completedLevel, completedTime);
+                showLevelResult(completedLevel, completedTime, rank);
             }
-
-            initLevel();
         }, 1000);
 
     } else {
@@ -847,7 +2901,141 @@ function handleAnswer(selected, quiz) {
     }
 }
 
-initLevel();
+
+function showMenu(menuId) {
+    document.getElementById('startMenu').classList.add('hiddenMenu');
+    document.getElementById('leaderboardMenu').classList.add('hiddenMenu');
+    document.getElementById('creditsMenu').classList.add('hiddenMenu');
+    document.getElementById('levelSelectMenu').classList.add('hiddenMenu');
+    document.getElementById('levelResultMenu').classList.add('hiddenMenu');
+
+    document.getElementById(menuId).classList.remove('hiddenMenu');
+}
+
+function saveScore(levelCompleted, timeSeconds) {
+    const score = {
+        level: levelCompleted,
+        time: Number(timeSeconds),
+        date: new Date().toLocaleDateString()
+    };
+
+    let scores = JSON.parse(localStorage.getItem('spaceAcademyScores') || '[]');
+    scores.push(score);
+
+    // Sort best score first:
+    // 1. Higher level is better
+    // 2. Faster time is better
+    scores.sort((a, b) => {
+        if(b.level !== a.level) return b.level - a.level;
+        return a.time - b.time;
+    });
+
+    const rank = scores.findIndex(s =>
+        s.level === score.level &&
+        s.time === score.time &&
+        s.date === score.date
+    ) + 1;
+localStorage.setItem('spaceAcademyScores', JSON.stringify(scores));
+
+    return rank;
+}
+
+function renderLeaderboard() {
+    const list = document.getElementById('leaderboardList');
+    const scores = JSON.parse(localStorage.getItem('spaceAcademyScores') || '[]');
+
+    if(scores.length === 0) {
+        list.innerHTML = "No scores yet.<br>Complete a level to save a score.";
+        return;
+    }
+
+    list.innerHTML = scores
+        .map((s, i) => `${i + 1}. Level ${s.level} - ${Number(s.time).toFixed(1)}s - ${s.date}`)
+        .join("<br>");
+}
+
+function showLevelResult(levelCompleted, timeSeconds, rank) {
+    gameState = 'result';
+
+    const resultBox = document.getElementById('levelResultText');
+
+    const rankText = rank === "Practice"
+        ? `<div class="practice-label">Practice Mode</div><div class="rank-highlight">Not Ranked</div><div class="practice-label">This score was not saved to the leaderboard.</div>`
+        : `<div>Your Ranking:</div><div class="rank-highlight">#${rank}</div>`;
+
+    resultBox.innerHTML = `
+        <div>Level Completed: <b>${levelCompleted}</b></div>
+        <div>Total Time: <b>${Number(timeSeconds).toFixed(1)} seconds</b></div>
+        ${rankText}
+    `;
+
+    showMenu('levelResultMenu');
+}
+
+document.getElementById('startGameBtn').addEventListener('click', function() {
+    document.getElementById('startMenu').classList.add('hiddenMenu');
+    practiceMode = false;
+    level = 1;
+    initLevel(true);
+});
+
+
+document.getElementById('levelSelectBtn').addEventListener('click', function() {
+    showMenu('levelSelectMenu');
+});
+
+document.getElementById('backFromLevelSelectBtn').addEventListener('click', function() {
+    showMenu('startMenu');
+});
+
+document.querySelectorAll('.level-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const selectedLevel = Number(this.getAttribute('data-level'));
+        practiceMode = true;
+        level = selectedLevel;
+        document.getElementById('levelSelectMenu').classList.add('hiddenMenu');
+        initLevel(true);
+        document.getElementById("msg").innerText = "Practice Mode: leaderboard disabled";
+    });
+});
+
+document.getElementById('leaderboardBtn').addEventListener('click', function() {
+    renderLeaderboard();
+    showMenu('leaderboardMenu');
+});
+
+document.getElementById('creditsBtn').addEventListener('click', function() {
+    showMenu('creditsMenu');
+});
+
+document.getElementById('backFromLeaderboardBtn').addEventListener('click', function() {
+    showMenu('startMenu');
+});
+
+document.getElementById('backFromCreditsBtn').addEventListener('click', function() {
+    showMenu('startMenu');
+});
+
+
+document.getElementById('nextLevelBtn').addEventListener('click', function() {
+    document.getElementById('levelResultMenu').classList.add('hiddenMenu');
+
+    level++;
+
+    if(level > 6) {
+        alert("恭喜通关所有关卡！");
+        level = 1;
+    }
+
+    initLevel(true);
+});
+
+document.getElementById('resultLeaderboardBtn').addEventListener('click', function() {
+    renderLeaderboard();
+    showMenu('leaderboardMenu');
+});
+
+initLevel(false);
 loop();
 </script>
 
